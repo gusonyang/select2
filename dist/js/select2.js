@@ -3044,7 +3044,12 @@ S2.define('select2/data/select',[
 
       data.push(option);
     });
-
+    
+    //Guson Add for Multiple Level
+    if(!data.length && (json_data = this.$element[0].json_data)){
+        data.push(json_data);
+    }
+    
     callback(data);
   };
 
@@ -3077,11 +3082,17 @@ S2.define('select2/data/select',[
           }
         }
 
+        //Guson Add for Multiple Level
+        this.$element[0].json_data = data;
+
         self.$element.val(val);
         self.$element.trigger('change');
       });
     } else {
       var val = data.id;
+
+      //Guson Add for Multiple Level
+      this.$element[0].json_data = data;
 
       this.$element.val(val);
       this.$element.trigger('change');
